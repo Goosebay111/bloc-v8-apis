@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sampleapi/home/bloc/home_bloc.dart';
 import 'package:sampleapi/services/boredService.dart';
@@ -12,6 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeBloc(
+        //Services used in the widgets.
         RepositoryProvider.of<BoredService>(context),
         RepositoryProvider.of<ConnectivityService>(context),
       )..add(LoadApiEvent()),
@@ -35,7 +35,8 @@ class HomePage extends StatelessWidget {
                     state.participants.toString(),
                   ),
                   ElevatedButton(
-                    onPressed: () => BlocProvider.of<HomeBloc>(context).add(LoadApiEvent()),
+                    onPressed: () =>
+                        BlocProvider.of<HomeBloc>(context).add(LoadApiEvent()),
                     child: Text('LOAD NEXT'),
                   )
                 ],

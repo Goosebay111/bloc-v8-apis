@@ -4,24 +4,30 @@ abstract class HomeState extends Equatable {
   const HomeState();
 }
 
+// STATE 1
 class HomeLoadingState extends HomeState {
   @override
   List<Object> get props => [];
 }
 
+// STATE 2
 class HomeLoadedState extends HomeState {
   final String activityName;
   final String activityType;
   final int participants;
 
-  HomeLoadedState(this.activityName, this.activityType, this.participants);
+  const HomeLoadedState(
+    this.activityName,
+    this.activityType,
+    this.participants,
+  );
+
   @override
-  // TODO: implement props
   List<Object?> get props => [activityName, activityType, participants];
 }
 
+// STATE 3
 class HomeNoInternetState extends HomeState {
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
