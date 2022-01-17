@@ -15,15 +15,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       : super(HomeLoadingState()) {
     // check that internet is available state from non bloc package, see pubspec.yaml.
     /// this code is for alerting client to no internet connection.
-    // _connectivityService.connectivityStream.stream.listen((event) {
-    //   if (event == ConnectivityResult.none) {
-    //     print('no internet');
-    //     add(NoInternetEvent());
-    //   } else {
-    //     print('yes internet');
-    //     add(LoadApiEvent());
-    //   }
-    // });
+    /// this code is not necessary for BLoC.
+    _connectivityService.connectivityStream.stream.listen((event) {
+      if (event == ConnectivityResult.none) {
+        print('no internet');
+        add(NoInternetEvent());
+      } else {
+        print('yes internet');
+        add(LoadApiEvent());
+      }
+    });
 
 // State from Event 1)
     on<LoadApiEvent>((event, emit) async {
