@@ -17,12 +17,12 @@ class HomePage extends StatelessWidget {
       )..add(LoadApiEvent()),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Activities for bored people'),
+          title: const Text('Activities for bored people'),
         ),
         body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             if (state is HomeLoadingState) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
@@ -37,13 +37,13 @@ class HomePage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () =>
                         BlocProvider.of<HomeBloc>(context).add(LoadApiEvent()),
-                    child: Text('LOAD NEXT'),
+                    child: const Text('LOAD NEXT'),
                   )
                 ],
               );
             }
             if (state is HomeNoInternetState) {
-              return Text('no internet :(');
+              return const Text('no internet :(');
             }
             return Container();
           },
