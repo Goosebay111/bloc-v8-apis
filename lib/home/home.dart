@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sampleapi/home/bloc/home_bloc.dart';
 import 'package:sampleapi/services/boredService.dart';
 import 'package:sampleapi/services/connectivityService.dart';
 
+///
+///
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -28,17 +31,33 @@ class HomePage extends StatelessWidget {
             }
             if (state is HomeLoadedState) {
               return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(state.activityName),
-                  Text(state.activityType),
-                  Text(
-                    state.participants.toString(),
+                  const Spacer(),
+                  Center(
+                      child: Text(
+                    state.activityName,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.lato(fontSize: 28),
+                    maxLines: 2,
+                  )),
+                  Center(child: Text(state.activityType)),
+                  Center(
+                    child: Text(
+                      state.participants.toString(),
+                    ),
                   ),
-                  ElevatedButton(
-                    onPressed: () =>
-                        BlocProvider.of<HomeBloc>(context).add(LoadApiEvent()),
-                    child: const Text('LOAD NEXT'),
-                  )
+                  const Spacer(),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () => BlocProvider.of<HomeBloc>(context)
+                          .add(LoadApiEvent()),
+                      child: const Text('LOAD NEXT'),
+                    ),
+                  ),
+                  const SizedBox(height: 50),
                 ],
               );
             }
